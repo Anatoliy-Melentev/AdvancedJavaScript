@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<main>
+
+</main>
+<script>
+
+	const
+		compound = {
+			size: {
+				big: {
+					title: 'Большой',
+					price: 100,
+					calories: 40
+				},
+				small: {
+					title: 'Маленький',
+					price: 50,
+					calories: 20
+				},
+			},
+			filling: {
+				cheese: {
+					title: 'Сыр',
+					price: 10,
+					calories: 20
+				},
+				salad: {
+					title: 'Салат',
+					price: 20,
+					calories: 5
+				},
+				potato: {
+					title: 'Картошка',
+					price: 15,
+					calories: 10
+				},
+			},
+			additing: {
+				spices: {
+					title: 'Приправа',
+					price: 15,
+					calories: 0
+				},
+				mayonnaise: {
+					title: 'Майонез',
+					price: 20,
+					calories: 5
+				}
+			}
+		};
+
+	class Hamburger {
+		constructor(compound, title) {
+			this.compound = compound;
+			this.title = title;
+			this.main = document.querySelector('main');
+			this.price = 0;
+			this.calories = 0;
+		}
+
+		createInput(type, name, id, { price, calories, title }) {
+			const
+				input = document.createElement('input'),
+				label = document.createElement('label'),
+				div = document.createElement('div');
+
+			input.classList.add(name);
+			label.classList.add(name);
+
+			input.dataset.price = price;
+			input.dataset.calories = calories;
+			label.innerText = title;
+
+			input.setAttribute('type', type);
+			input.setAttribute('id', id);
+			input.setAttribute('value', id);
+			input.setAttribute('name', name);
+			label.setAttribute('for', id);
+
+			div.appendChild(input);
+			div.appendChild(label);
+
+			return div;
+		}
+		createForm() {
+			this.form = document.createElement('form');
+
+			for (let prop in compound) {
+				for (let inprop in compound[prop]) {
+					this.form.appendChild(
+							this.createInput(prop === 'size' ? 'radio' : 'checkbox', prop, inprop, compound[prop][inprop])
+					);
+				}
+			}
+		}
+		createTitle(){
+			this.header =  document.createElement('h2');
+			this.header.innerText = this.title;
+		}
+		createOutput(){
+			this.output = document.createElement('output');
+		}
+		createHamburger() {
+			this.createForm();
+			this.createTitle();
+			this.createOutput();
+
+			this.main.appendChild(this.header);
+			this.main.appendChild(this.output);
+			this.main.appendChild(this.form);
+
+			this.form.addEventListener('click', ({target}) => {
+				const total = [...target.form].reduce(({ totalPrice, totalCalories}, el) => {
+					if (el.checked) {
+						totalPrice += +el.dataset.price;
+						totalCalories += +el.dataset.calories;
+					}
+
+					return { totalPrice, totalCalories };
+				}, { totalPrice: 0, totalCalories: 0 });
+
+				this.output.innerText = `Цена: ${total.totalPrice} Количество калорий: ${total.totalCalories}`;
+			});
+		}
+	}
+
+	const hamburger = new Hamburger(compound, 'Гамбургер');
+	hamburger.createHamburger();
+</script>
+</body>
+</html>
