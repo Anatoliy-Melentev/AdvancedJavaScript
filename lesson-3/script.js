@@ -196,7 +196,7 @@ class Showcase {
           id: product.id_product,
           title: product.product_name,
           price: product.price,
-          img: `Product_${product.id_product}`
+          img: `product_${product.id_product}`
         })
       )
       this.catalog.drawToCatalog();
