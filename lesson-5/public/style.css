@@ -97,10 +97,15 @@ tbody .card-menu__row:nth-child(2n-1) {
 .card-menu__col {
   padding: 10px 10px 10px 30px;
   text-align: center;
+  white-space: nowrap
 }
 
 .card-menu__col:first-child {
   text-align: left;
+}
+
+.count {
+  min-width: 80px;
 }
 
 .count:after {
@@ -283,6 +288,8 @@ tbody .card-menu__row:nth-child(2n-1) {
 
 .product__img {
   width: 100%;
+  min-width: 360px;
+  min-height: 420px;
 }
 
 li {
@@ -298,11 +305,11 @@ li {
 }
 .increase {
   border-left-color: #999;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 .decrease {
   border-right-color: #999;
-  margin-left: 10px;
+  margin-right: 10px;
 }
 .increase:hover {
   border-left-color: #333;
