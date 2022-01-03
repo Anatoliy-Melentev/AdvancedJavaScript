@@ -1,0 +1,19 @@
+.error
+	background-color: rgba(0, 0, 0, 0.6)
+	@include offset(0,0,0,0,fixed)
+	@include flex-center()
+
+	&__wind
+		background-color: $pink-back
+		@include size(300, auto)
+		padding: 40px
+		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4)
+		max-height: 300px
+
+	&__text
+		@include font(18, 30)
+		color: $pink-text
+
+	&__close
+		margin-right: -10px
+		margin-top: -10px
