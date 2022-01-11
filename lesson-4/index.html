@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body class="container">
+<br><br>
+<h4>Текст c одинарными кавычками:</h4>
+<div id="text">
+	He said, 'Don't ask me about it.' 'Don't go there alone,' he said.
+	I like the poem 'Stopping by Woods on a Snowy Evening'.
+	He called his character 'the symbol of greed', and many people agree with this description.
+
+	'Jump!' he shouted. 'Where is he?' she asked. He said, 'Someone has stolen the money.'
+	I don't believe it. Did he say, 'Tom has stolen the money'? He didn't say, 'Tom has stolen the money'!
+</div>
+<h4>Текст с двойными кавычками:</h4>
+<div id="chаngetext"></div>
+<br>
+<h3>Форма</h3>
+<br>
+<form class="appnitro" method="post" action="#">
+		<div class="form-floating mb-3">
+			<input id="name" name="name" class="name form-control " type="text" maxlength="255" value=""/>
+			<label class="description form-label" for="name">Имя</label>
+			<span id="error_name" class="error name__error form-text invalid-feedback">Не верно заполнено поле. Возможен ввод только букв.</span>
+		</div>
+		<div class="form-floating mb-3">
+			<input id="phone" name="phone" class="phone form-control" type="text" maxlength="255" value=""/>
+			<label class="description form-label" for="phone">Телефон</label>
+			<span id="error_phone" class="error phone__error form-text valid-feedback">Не верно заполнено поле. Введите в формате: +7(___)___-____</span>
+		</div>
+		<div class="form-floating mb-3">
+			<input id="email" name="email" class="email form-control" type="text" maxlength="255" value=""/>
+			<label class="description form-label" for="email">Email</label>
+			<span id="error_email" class="error email__error form-text valid-feedback">Не верно заполнено поле. Введите в формате: my-email@email.ru</span>
+		</div>
+		<div class="form-floating mb-3">
+			<textarea id="textarea" name="text" class="text form-control" style="height: 100px">
+
+			</textarea>
+			<label class="description form-label" for="textarea">Текст</label>
+			<span class="error text__error form-text valid-feedback">Не верно заполнено поле</span>
+		</div>
+		<button type="submit" id="send" class="btn btn-primary">Отправить</button>
+</form>
+<script>
+
+	const getEl = id => { return document.getElementById(id) };
+
+	getEl('chаngetext').innerHTML = getEl('text').innerHTML.replace(/\W(')|(')\W/gm, '"');
+
+	const
+		regexp = {
+			name: new RegExp(/^[A-Za-zА-Яа-я]+$/),
+			phone: new RegExp(/^\+7\([0-9]{3}\)[0-9]{3}\-[0-9]{4}$/),
+			email: new RegExp(/^[a-z\-\.\_\d]+@[a-z\d]+.[a-z]{2,8}$/),
+		},
+		setValidating = name => {
+			const
+				el = getEl(name),
+				errorEl = getEl('error_' + name),
+				check = regexp[name].test(el.value);
+
+			if (check) {
+				el.classList.remove('is-invalid');
+				errorEl.classList.add('valid-feedback');
+				errorEl.classList.remove('invalid-feedback');
+			} else {
+				el.classList.add('is-invalid');
+				errorEl.classList.add('invalid-feedback');
+				errorEl.classList.remove('valid-feedback');
+			}
+		};
+
+	getEl('send').addEventListener('click', e => {
+		e.preventDefault();
+		for (let prop in regexp) {
+			setValidating(prop);
+		}
+	});
+</script>
+
+</body>
+</html>
