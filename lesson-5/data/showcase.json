@@ -1,0 +1,14 @@
+[
+  {"id": 1, "title": "Jacket", "price": 61.01},
+  {"id": 2, "title": "Suit", "price": 52.02},
+  {"id": 3, "title": "Hoody", "price": 43.04},
+  {"id": 4, "title": "Pants", "price": 34.08},
+  {"id": 5, "title": "Blazer", "price": 25.16},
+  {"id": 6, "title": "Blouse", "price": 16.32},
+  {"id": 7, "title": "Shirt", "price": 45.99},
+  {"id": 8, "title": "T-Shirt", "price": 25.66},
+  {"id": 9, "title": "Cap", "price": 34.55},
+  {"id": 10, "title": "Belt", "price": 43.33},
+  {"id": 11, "title": "Dog", "price": 100},
+  {"id": 12, "title": "Shorts", "price": 20.54}
+]
